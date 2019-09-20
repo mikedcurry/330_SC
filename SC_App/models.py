@@ -5,6 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 DB = SQLAlchemy()
 
+
 class Record(DB.Model):
     id = DB.Column(DB.BigInteger, primary_key=True)
     datetime = DB.Column(DB.String(25))
