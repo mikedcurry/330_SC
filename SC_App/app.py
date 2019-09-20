@@ -24,8 +24,9 @@ def create_app():
         DB.drop_all()
         DB.create_all()
         for thing in get_values('Los Angeles', 'pm25'):
-            record = Record(str(thing[0]), thing[1])
-            DB.session.add(str(record))
+            record = Record(datetime=str(thing[0]), value=thing[1])
+            # record = str(record)
+            DB.session.add(record)
         DB.session.commit()
         return render_template('update.html', title='Reset Database!')
 

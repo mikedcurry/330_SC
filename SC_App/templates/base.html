@@ -8,13 +8,15 @@
   <body>
     <nav>
       <div class="menu">
+        <!-- <h1>Here we go...</h1> -->
         <form action="/update">
             <button type="submit" value="Update">Refresh Data</button>
         </form>
         <!-- <a href="/update" class="button warning">Update Database</a> -->
       </div>
   </nav>
-    <h1>Here we go...</h1>
+    <h1>_________</h1>
+    <h2>Here we go...</h2>
     <ul>
       {% for record in records %}
       <li>{{ record.datetime }} - {{ record.value }}</li> <!-- can add .<atribute> here based on Record class-->
