@@ -7,11 +7,11 @@ DB = SQLAlchemy()
 
 
 class Record(DB.Model):
-    id = DB.Column(DB.BigInteger, primary_key=True)
-    datetime = DB.Column(DB.String(25))
+    id = DB.Column(DB.Integer, primary_key=True)
+    datetime = DB.Column(DB.String(50))
     value = DB.Column(DB.Float, nullable=False)
     def __repr__(self):
-        return '<On {}, value was {}>'.format(self.datime, self.value)
+        return "(Datetime %r, Value %r)" %(self.datetime, self.value)
         # 'TODO - write a nice representation of Records'
         
 

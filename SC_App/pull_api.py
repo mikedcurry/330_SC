@@ -10,7 +10,7 @@ def unity(l1, l2): # y'all need some unity...
 
 def get_values(city, parameter):
     status, body = API.measurements(city=city, parameter=parameter)
-    dates = [result['date']['utc'] for result in body['results']]
-    values = [result['value'] for result in body['results']]
-    list_unity = unity(dates, values)
+    datetime = [result['date']['utc'] for result in body['results']]
+    value = [result['value'] for result in body['results']]
+    list_unity = unity(datetime, value)
     return list_unity

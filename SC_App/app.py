@@ -15,7 +15,7 @@ def create_app():
 
     @app.route("/")
     def root():
-        records = Record.query(Record.value>=10).all()
+        records = Record.query.filter(Record.value>=10).all()
         return render_template('base.html', title = 'Home', records=records)
 
     @app.route('/update')
@@ -23,9 +23,9 @@ def create_app():
     # update data from API
         DB.drop_all()
         DB.create_all()
-        for thing in get_values(city='Los Angeles', parameter='pm25'):
-            records = Record(datetime=str(thing[0]), value=thing[1])
-            DB.session.add(record)
+        for thing in get_values('Los Angeles', 'pm25'):
+            record = Record(str(thing[0]), thing[1])
+            DB.session.add(str(record))
         DB.session.commit()
         return render_template('update.html', title='Reset Database!')
 
