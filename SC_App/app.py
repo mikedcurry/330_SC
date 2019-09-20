@@ -2,13 +2,14 @@ from decouple import config
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from .models import DB, Record
+# from .openaq_py import *
 
 
 def create_app():
     app = Flask(__name__) # gives it the name of the module
     app.config['SQLALCHEMY_DATABASE_URI'] = config('DATABASE_URL')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['ENV'] = confif('ENV')
+    app.config['ENV'] = config('ENV')
     DB.init_app(app)
 
     @app.route("/")
@@ -32,6 +33,8 @@ def create_app():
     #     return render_template('base.html', title='Reset Database!'
 
     return app
+
+
 
 # if __name__ == '__main__':
 #     APP.run(debug=True)

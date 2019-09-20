@@ -15,6 +15,7 @@ pandas = "*"
 matplotlib = "*"
 seaborn = "*"
 python-decouple = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
