@@ -2,6 +2,7 @@ from decouple import config
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from .models import DB, Record
+from .pull_api import get_values, unity
 # from .openaq_py import *
 
 
@@ -17,20 +18,17 @@ def create_app():
         records = Record.query.all()
         return render_template('base.html', title = 'Home', records=records)
 
-    @app.route('/refresh')
+    @app.route('/update')
     def refresh():
-    # """Pull fresh data from Open AQ and replace existing data."""
+    # update data from API
         DB.drop_all()
         DB.create_all()
-        # TODO Get data from OpenAQ, make Record objects with it, and add to db
+        for thing in get_values(city='Los Angeles', parameter='pm25'):
+            record = Record(datetime=str(thing[0]), value=thing[1])
+            DB.session.add(record)
         DB.session.commit()
-        return render_template('base.html', title='Reset Database!')
+        return render_template('update.html', title='Reset Database!')
 
-    # @app.route('/reset')
-    # def reset():
-    #     DB.drop_all()
-    #     DB.create_all()
-    #     return render_template('base.html', title='Reset Database!'
 
     return app
 

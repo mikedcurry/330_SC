@@ -21,7 +21,6 @@ class Record(DB.Model):
 
 
 
-
 # DB = SQLAlchemy()
 
 
